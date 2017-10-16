@@ -55,8 +55,8 @@
             
         </label>
         <div class="col-sm-10">
-            <input type="text" class="form-control ui-autocomplete-input" name="vendor" vlaue="${this.stockItem?.productVendor?.vendorName}"  required="" id="auto" />
-            <input type="hidden" name="productVendor.id" vlaue="${this.stockItem?.productVendor?.id}" />
+            <input type="text" class="form-control ui-autocomplete-input" name="vendor" value="${this.stockItem?.productVendor?.vendorName}"  required="" id="auto" />
+            <input type="hidden" id="vendoeId" name="productVendor.id" value="${this.stockItem?.productVendor?.id}" />
         </div>
 </div>
 </div>

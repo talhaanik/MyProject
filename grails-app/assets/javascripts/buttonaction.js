@@ -62,9 +62,16 @@ $( "#datepicker" ).datepicker({
       "Scheme"
     ];
     $( "#auto" ).autocomplete({
-      source: "/stockItem/itemlist",
+      source: "/ProductVendor/vendorList",
+       focus: function( event, ui ) {
+                  $( "#auto" ).val( ui.item.label );
+                     return false;
+               },
          select: function (event, ui ) {
-        alert('You selected: ' + ui.item.label+ ', ' + ui.item.value );
+             $("#vendoeId").val(ui.item.value);
+             $("#auto").val(ui.item.label);
+        console.log('You selected: ' + ui.item.label+ ', ' + ui.item.value );
+        return false;
     }
     });
   } );

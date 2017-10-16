@@ -2,7 +2,7 @@ package com.shop.core
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-
+import grails.converters.*
 @Transactional(readOnly = true)
 class ProductVendorController {
 
@@ -103,5 +103,11 @@ class ProductVendorController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+    
+    def vendorList(){
+        println 'in item list' +params
+        def vendorlist=ProductVendor.executeQuery("select  new map(s.vendorName as label,s.id as value) from com.shop.core.ProductVendor s where s.vendorName like '%${params.term}%'")
+        render vendorlist as JSON
     }
 }

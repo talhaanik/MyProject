@@ -7,15 +7,15 @@ import grails.converters.*
 class StockItemController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-def productVendorService
+    def productVendorService
     def index(Integer max) {
         params.max = Math.min(max ?: 5, 100)
         //if(request.xhr){
-         //   render(template: "table", model: [stockItemList:StockItem.list(params),stockItemCount: StockItem.count()])
+        //   render(template: "table", model: [stockItemList:StockItem.list(params),stockItemCount: StockItem.count()])
 
-       // }else{
-            respond StockItem.list(params), model:[stockItemCount: StockItem.count()]
-       // }
+        // }else{
+        respond StockItem.list(params), model:[stockItemCount: StockItem.count()]
+        // }
     }
 
     def show(StockItem stockItem) {
@@ -39,8 +39,8 @@ def productVendorService
             respond stockItem.errors, view:'create'
             return
         }
-        if(stockItem.productVendor.id==null&&!params.vendor.equals("")){
-            stockItem.productVendor.id=productVendorService.createVendor(params.vendor)
+        if(stockItem.productVendor==null&&!params.vendor.equals("")){
+            stockItem.productVendor=productVendorService.createVendor(params.vendor)
         }
 
         stockItem.save flush:true
@@ -65,13 +65,15 @@ def productVendorService
             notFound()
             return
         }
-println "call"
+        println "call"
         if (stockItem.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond stockItem.errors, view:'edit'
             return
         }
-
+        if(stockItem.productVendor==null&&!params.vendor.equals("")){
+            stockItem.productVendor=productVendorService.createVendor(params.vendor)
+        }
         stockItem.save flush:true
 
         request.withFormat {
@@ -85,14 +87,14 @@ println "call"
 
     //@Transactional
     def delete(StockItem stockItem) {
- println params
- println stockItem
+        println params
+        println stockItem
         if (stockItem == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
-    println "call delete"
+        println "call delete"
         stockItem.delete flush:true
 
         request.withFormat {
