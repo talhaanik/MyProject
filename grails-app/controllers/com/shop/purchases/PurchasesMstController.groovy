@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class PurchasesMstController {
-def stockService
+    def stockService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -30,18 +30,24 @@ def stockService
             notFound()
             return
         }
-
+        purchasesMst.purchasesDtls.eachWithIndex{dtls,index->
+            if(dtls.stockItem==null && !params."purchasesDtls[${index}].stockItemName".equals("")){
+                dtls.stockItem= stockService.createInitItem(params."purchasesDtls[${index}].stockItemName",dtls.prchUnit)
+            }
+            
+        }
   
         if (purchasesMst.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond purchasesMst.errors, view:'create'
             return
         }
+        
        
-       if(purchasesMst.save(flush:true)){
-           stockService.addItemToStock(purchasesMst.purchasesDtls)
+        if(purchasesMst.save(flush:true)){
+            stockService.addItemToStock(purchasesMst.purchasesDtls)
 
-       }
+        }
        
         request.withFormat {
             form multipartForm {

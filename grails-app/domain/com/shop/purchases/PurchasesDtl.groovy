@@ -9,6 +9,7 @@ Float unitPrice
 CodeListItem prchUnit
 static belongsTo = [purchasesMst:PurchasesMst,stockItem:StockItem]
     static constraints = {
+        stockItem nullable:true
     }
     static mapping ={
         prchUnit column:'prch_unit'

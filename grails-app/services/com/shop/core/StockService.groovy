@@ -62,4 +62,10 @@ class StockService {
         stock.save(flush:true)
             
     }
+    def createInitItem(String name,def unit){
+        def stockItem=new StockItem(itemName:name,stkUnit:unit,qty:0,unitPrice:0)
+        stockItem.save(flush:true)
+        return stockItem
+        
+    }
 }

@@ -37,32 +37,9 @@ $( "#datepicker" ).datepicker({
         dateFormat: 'dd/mm/yy'
 });
    $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
+    
     $( "#auto" ).autocomplete({
-      source: "/ProductVendor/vendorList",
+      source: "/productVendor/vendorList",
        focus: function( event, ui ) {
                   $( "#auto" ).val( ui.item.label );
                      return false;
@@ -74,20 +51,26 @@ $( "#datepicker" ).datepicker({
         return false;
     }
     });
+    
+    
+     $( "#pur_auto" ).autocomplete({
+      source: "/stockItem/itemlist",
+       focus: function( event, ui ) {
+                  $( "#pur_auto" ).val( ui.item.label );
+                     return false;
+               },
+         select: function (event, ui ) {
+             $("#stockItemId").val(ui.item.value);
+             $("#pur_auto").val(ui.item.label);
+        console.log('You selected: ' + ui.item.label+ ', ' + ui.item.value );
+        return false;
+    }
+    });
   } );
   
-  var countries = [
-   { value: 'Andorra', data: 'AD' },
-   // ...
-   { value: 'Zimbabwe', data: 'ZZ' }
-];
 
-$('#autocomplete').autocomplete({
-    lookup: countries,
-    onSelect: function (suggestion) {
-        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
-    }
-});
+
+
   
 }
 function onChangeSelect(val,url,target){

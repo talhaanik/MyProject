@@ -3,6 +3,7 @@
     <table id="purches_dtl" class="table table-bordered">
         <thead>
             <tr>
+                <th></th>
                 <th>
                     <label for="stockItem">
                         <g:message code="purchasesDtl.stockItem.label" default="Item" />
@@ -39,10 +40,15 @@
         </thead>
         <tbody>
             <tr id="purches_dtl_row_-1">
-                <td><g:select id="stockItem" name="purchasesDtls_stockItem.id" 
+                <td><%--g:select id="stockItem" name="purchasesDtls_stockItem.id" 
                     from="${com.shop.core.StockItem.list()}" 
                         optionKey="id" optionValue="itemName" 
-                        value="" class="select2-A"/>
+                        value="" class="select2-A"/--%>
+                
+            <input type="hidden" id="stockItemId" name="purchasesDtls_stockItem.id" value="null" />
+                </td>
+                <td>
+                    <input type="text" class="form-control ui-autocomplete-input" name="purchasesDtls_stockItemName" value=""  required="" id="pur_auto" />
                 </td>
                 <td>
                     <g:field class="form-control" onkeyup="calTotal()" name="purchasesDtls_qty" value="" />
