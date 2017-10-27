@@ -2,23 +2,45 @@
 <html>
     <head>
         
-        <g:set var="entityName" value="${message(code: 'codeList.label', default: 'CodeList')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <g:set var="entityName" value="${message(code: 'codeList.label', default: 'Configaration')}" />
+        
     </head>
     <body>
-        <a href="#list-codeList" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                
-                <li><g:link class="create" onclick="ajxCallItem(jQuery(this),'menu_codeList');return false;" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-codeList" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
+        
+       <div class="form-element" style="padding-top:15px;padding-bottom:15px;">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-12">
+                    <div class="col-md-12 panel">
+                        <div class="col-md-12 panel-heading">
+                            <h4><g:message code="default.list.label" args="[entityName]" /></h4>
+                        </div>
+                        <div class="col-md-12 panel-body">
+                             <div class="col-md-12">
+                            <g:link class="btn btn-primary pull-right" onclick="ajxCallItem(jQuery(this),'content');return false;" 
+                                     action="create">
+                                    <i class="fa fa-plus"></i>
+                                    <%--g:message code="default.new.label" args="[entityName]" /--%></g:link>
+                             </div>
+                            <div class="col-md-12">
+                                
+    <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-         <g:render template="table"/>
+
+            <div id="filteredList">
+                <g:render template="table"/>
+            </div>
+            <div id="item_details"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </body>
+ 		
+        
+            
+             
+            
+   </body>
 </html>

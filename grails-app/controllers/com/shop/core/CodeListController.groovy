@@ -52,6 +52,7 @@ class CodeListController {
 
     @Transactional
     def update(CodeList codeList) {
+        println 'update'
         if (codeList == null) {
             transactionStatus.setRollbackOnly()
             notFound()

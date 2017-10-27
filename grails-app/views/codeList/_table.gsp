@@ -3,13 +3,13 @@
         <thead>
             <tr>
 
-        <util:remoteSortableColumn property="id" title="${message(code: 'book.id.label', default: 'Id')}" update="menu_codeList" action="index"/>
+        <util:remoteSortableColumn property="id" title="${message(code: 'book.id.label', default: 'Id')}" update="content" action="index"/>
 
-        <util:remoteSortableColumn property="clsName" title="${message(code: 'book.author.label', default: 'Name')}" update="menu_codeList" action="index"/>
+        <util:remoteSortableColumn property="clsName" title="${message(code: 'book.author.label', default: 'Name')}" update="content" action="index"/>
 
-        <util:remoteSortableColumn property="clsCode" title="${message(code: 'book.name.label', default: 'Code')}" update="menu_codeList" action="index"/>
+        <util:remoteSortableColumn property="clsCode" title="${message(code: 'book.name.label', default: 'Code')}" update="content" action="index"/>
 
-        <util:remoteSortableColumn property="isActive" title="${message(code: 'book.price.label', default: 'IsActive')}" update="menu_codeList" action="index"/>
+        <util:remoteSortableColumn property="isActive" title="${message(code: 'book.price.label', default: 'IsActive')}" update="content" action="index"/>
         <th>Action</th>
         </tr>
         </thead>
@@ -25,11 +25,12 @@
 
                     <td>${fieldValue(bean: codeListInstance, field: "isActive")}</td>
                     <td>
-                        <g:form resource="${codeListInstance}" onsubmit="if(confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}'))ajxSubmit(jQuery(this),'menu_codeList');return false;" method="DELETE">
-                            <g:link class="btn btn-default btn-sm" onclick="ajxCallItem(jQuery(this),'menu_codeList');return false;"  id="${codeListInstance?.id}" controller="codeList" action="show">Show</g:link>   
-                            <g:link class="btn btn-default btn-sm" onclick="ajxCallItem(jQuery(this),'menu_codeList');return false;"  id="${codeListInstance?.id}" controller="codeList" action="edit">Edit</g:link>   
-                            <input class="btn btn-default btn-sm" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" />
-
+                        <g:form resource="${codeListInstance}" onsubmit="if(confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}'))ajxSubmit(jQuery(this),'content');return false;" method="DELETE">
+                            <g:link class="btn btn-success" onclick="ajxCallItem(jQuery(this),'content');return false;"  id="${codeListInstance?.id}" controller="codeList" action="show"><i class="fa fa-eye"></i></g:link>   
+                            <g:link class="btn btn-info" onclick="ajxCallItem(jQuery(this),'content');return false;"  id="${codeListInstance?.id}" controller="codeList" action="edit"><i class="fa fa-pencil"></i></g:link>   
+                            <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-close"></i>
+                                </button>
                         </g:form>
 
                     </td>
@@ -40,5 +41,5 @@
 
 </div>
 <div class="pagination">
-    <util:remotePaginate total="${codeListCount}" update="menu_codeList" action="index" pageSizes="[2: '2 on Page',5:'5 on Page',10:'10 on Page']"  />
+    <util:remotePaginate total="${codeListCount}" update="content" action="index" pageSizes="[2: '2 on Page',5:'5 on Page',10:'10 on Page']"  />
 </div>

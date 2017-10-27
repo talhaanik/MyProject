@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        <g:set var="entityName" value="${message(code: 'codeList.label', default: 'CodeList')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <%--meta name="layout" content="main" /--%>
+       <g:set var="entityName" value="${message(code: 'codeList.label', default: 'CodeList')}" />
+
     </head>
     <body>
-        <a href="#create-codeList" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                
-                <li><g:link class="back" onclick="ajxCallItem(jQuery(this),'menu_codeList');return false;" action="index">Back</g:link></li>
-            </ul>
-        </div>
-        <div id="create-codeList" class="content scaffold-create" role="main">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.codeList}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.codeList}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form action="save" onsubmit="ajxSubmit(jQuery(this),'menu_codeList');return false;">
-                <fieldset class="form">
-                   <g:render template="form"/>
-                  <g:render template="details"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                </fieldset>
-            </g:form>
+        <div class="form-element" style="padding-top:15px;padding-bottom:15px;">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-12">
+                    <div class="panel form-element-padding">
+
+                        <div class="panel-heading">
+                            
+                           
+                            <h4><g:message code="default.create.label" args="[entityName]" /></h4>
+                          
+                            
+                            
+                            
+                       
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <g:link class="btn btn-primary pull-right"  action="index" 
+                                    onclick="ajxCallItem(jQuery(this),'content');return false;">
+                                    <i class="fa fa-arrow-left"></i>
+                                </g:link>
+                            </div>                  
+
+                            <div class="col-md-12">
+
+                                <g:if test="${flash.message}">
+                                    <div class="message" role="status">${flash.message}</div>
+                                </g:if>
+                                <g:hasErrors bean="${this.codeList}">
+                                    <ul class="errors" role="alert">
+                                        <g:eachError bean="${this.codeList}" var="error">
+                                            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                            </g:eachError>
+                                    </ul>
+                                </g:hasErrors>
+                                <g:form action="save" onsubmit="ajxSubmit(jQuery(this),'content');return false;">
+                                    <fieldset class="form">
+                                        <g:render template="form"/>
+                                        <g:render template="details"/>
+                                    </fieldset>
+                                     <div class="form-group">
+                                        <g:submitButton name="create" class="submit btn btn-success pull-right" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                     </div>
+                                </g:form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

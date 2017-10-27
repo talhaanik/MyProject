@@ -57,7 +57,7 @@
                       </ul>
                     </li>
                      <li class="ripple"><g:link  onclick="ajxCallItem(jQuery(this),'content');return false;" 
-                             controller="salesMst" action="index"><span class="fa fa-gear"></span>Setup</g:link></li>
+                             controller="codeList" action="index"><span class="fa fa-gear"></span>Setup</g:link></li>
                      
                      
                      

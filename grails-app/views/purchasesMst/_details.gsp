@@ -1,4 +1,4 @@
-
+<div class="row">
     <div class="table-responsive">
     <table id="purches_dtl" class="table table-bordered">
         <thead>
@@ -88,7 +88,7 @@
             </g:each>
         </tbody>
     </table>
-
+    </div>
 </div>
 
 
